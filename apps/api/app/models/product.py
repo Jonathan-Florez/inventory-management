@@ -1,5 +1,6 @@
 import enum
 from datetime import UTC, datetime
+from decimal import Decimal
 
 from sqlmodel import Field, SQLModel
 
@@ -22,7 +23,7 @@ class Product(SQLModel, table=True):
     description: str | None = Field(default=None)
 
     quantity: int = Field(default=0, ge=0)
-    price: float = Field(default=0)
+    price: Decimal = Field(default=0, max_digits=10, decimal_places=2, ge=0)
     min_stock: int = Field(default=0, ge=0)
 
     location: str | None = Field(default=None)
