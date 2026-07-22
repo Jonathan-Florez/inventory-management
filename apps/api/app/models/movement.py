@@ -1,7 +1,8 @@
 import enum
 from datetime import UTC, datetime
 
-from sqlalchemy import Column
+from sqlmodel import Field, SQLModel
+from sqlalchemy import Column, Integer, ForeignKey
 from sqlalchemy import Enum as SAEnum
 from sqlmodel import Field, SQLModel
 
@@ -15,7 +16,9 @@ class Movement(SQLModel, table=True):
     __tablename__ = "movements"
 
     id: int | None = Field(default=None, primary_key=True)
-    product_id: int = Field(foreign_key="products.id", nullable=False, index=True)
+    product_id: int = Field(
+    sa_column=Column(Integer, ForeignKey("products.id", ondelete="CASCADE"), nullable=False, index=True)
+    )
     user_id: int = Field(foreign_key="users.id", nullable=False, index=True)
 
     type: MovementType = Field(

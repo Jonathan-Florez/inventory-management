@@ -1,6 +1,7 @@
 import enum
 from datetime import UTC, datetime
 from decimal import Decimal
+from sqlalchemy import Column, ForeignKey, Integer
 
 from sqlmodel import Field, SQLModel
 
@@ -15,7 +16,10 @@ class Product(SQLModel, table=True):
     __tablename__ = "products"
 
     id: int | None = Field(default=None, primary_key=True)
-    category_id: int = Field(foreign_key="categories.id", nullable=False, index=True)
+    ##* Conexion con la tabla de categorias, con ondelete="CASCADE" para que si se borra una categoria, se borren todos los productos asociados a esa categoria, y con index=True para que sea mas rapido buscar por categoria
+    category_id: int = Field(
+        sa_column=Column(Integer, ForeignKey("categories.id", ondelete="CASCADE"), nullable=False, index=True)
+    )
     user_id: int = Field(foreign_key="users.id", nullable=False, index=True)
 
     name: str = Field(nullable=False, index=True)
