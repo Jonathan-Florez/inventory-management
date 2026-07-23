@@ -82,3 +82,15 @@ class ProductRepository:
     def delete(self, product: Product) -> None:
         self.session.delete(product)
         self.session.commit()
+
+
+    ##? Bloqueamos la fila de producto en la db mientras la transaccion del movimiento, por si existe una segunda request tenga que esperar
+    ##? a que la primera termine, para que no hallan inconsistencias en un uso de usuario concurrente
+
+    def get_by_id_for_update(self, product_id: int, user_id: int) -> Product | None:
+        statement = (
+            select(Product)
+            .where(Product.id == product_id, Product.user_id == user_id)
+            .with_for_update()
+        )
+        return self.session.exec(statement).first()
