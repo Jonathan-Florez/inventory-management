@@ -94,3 +94,18 @@ class ProductRepository:
             .with_for_update()
         )
         return self.session.exec(statement).first()
+
+    def count_and_value(self, user_id: int) -> tuple[int, Decimal]:
+        statement = select(
+            func.count(Product.id),
+            func.coalesce(func.sum(Product.quantity * Product.price), 0),
+        ).where(Product.user_id == user_id)
+        total_products, total_value = self.session.exec(statement).one()
+        return total_products, total_value
+
+    def count_low_stock(self, user_id: int) -> int:
+        statement = select(func.count(Product.id)).where(
+            Product.user_id == user_id, Product.quantity <= Product.min_stock
+        )
+        ##* EL ONE es para que no traiga una lista sino que me extraiga de esa lista el valor directamente y me lo de 
+        return self.session.exec(statement).one()
