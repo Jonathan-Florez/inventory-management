@@ -79,3 +79,7 @@ class CategoryRepository:
     def delete(self, category: Category) -> None:
             self.session.delete(category)
             self.session.commit()   
+
+    def count(self, user_id: int) -> int:
+        statement = select(func.count(Category.id)).where(Category.user_id == user_id)
+        return self.session.exec(statement).one()
