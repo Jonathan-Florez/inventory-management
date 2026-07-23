@@ -14,6 +14,7 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
   conteo de productos por categoría
 - Productos: CRUD completo, paginación, filtros (category_id, status,
   low_stock, q), SKU único global, GET /products/alerts
+- Movimientos: POST/GET /products/id/movements con actualizacion atomica de stock, vlaidacion de stock suficiente en salidas
 
 ### Fixed
 - config.py: resolución de rutas para .env corregida para funcionar tanto en
