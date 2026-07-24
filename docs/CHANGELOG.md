@@ -15,7 +15,9 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 - Productos: CRUD completo, paginación, filtros (category_id, status,
   low_stock, q), SKU único global, GET /products/alerts
 - Movimientos: POST/GET /products/id/movements con actualizacion atomica de stock, vlaidacion de stock suficiente en salidas
-
+- Tests: cobertura de endpoints de auth y movimientos, con DB de test
+  aislada y transacciones con rollback para aislamiento entre tests
+  
 ### Fixed
 - config.py: resolución de rutas para .env corregida para funcionar tanto en
   desarrollo local como dentro de contenedores Docker (antes usaba un índice
