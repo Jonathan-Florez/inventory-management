@@ -2,6 +2,7 @@ from dataclasses import fields
 
 from sqlmodel import Session, func, select
 from datetime import UTC, datetime
+from decimal import Decimal
 
 from app.models.product import Product
 
