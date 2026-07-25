@@ -18,6 +18,10 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 - Tests: cobertura de endpoints de auth y movimientos, con DB de test
   aislada y transacciones con rollback para aislamiento entre tests
   
+- Autenticación completa en el frontend: contexto de sesión (AuthContext) con persistencia en localStorage, páginas de login/registro con estados de carga y error visibles, y protección de rutas vía guard client-side
+
+
+
 ### Fixed
 - config.py: resolución de rutas para .env corregida para funcionar tanto en
   desarrollo local como dentro de contenedores Docker (antes usaba un índice
@@ -29,3 +33,4 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 - price migrado de Float a Numeric(10,2) para evitar errores de redondeo
 - .dockerignore agregado para excluir .venv, __pycache__ y archivos .env
   del contexto de build (reduce tamaño de imagen y evita filtrar secretos)
+- CORS del backend restringido a http://localhost:3000 (antes allow_origins=["*"]).
