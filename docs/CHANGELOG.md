@@ -19,6 +19,7 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
   aislada y transacciones con rollback para aislamiento entre tests
   
 - Autenticación completa en el frontend: contexto de sesión (AuthContext) con persistencia en localStorage, páginas de login/registro con estados de carga y error visibles, y protección de rutas vía guard client-side
+- CRUD completo de Categorías en el frontend: listado con búsqueda y paginación, formulario de crear/editar, borrado con advertencia de eliminación en cascada (productos y movimientos asociados).
 
 
 
