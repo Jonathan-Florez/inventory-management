@@ -142,7 +142,7 @@ Ver `docs/adr/` para el detalle completo de cada decisión. Resumen:
 - [x] Frontend: scaffold real de Next.js (TypeScript, Tailwind, App Router)
 - [x] Frontend: autenticación (registro, login, sesión persistente, rutas
       protegidas)
-- [ ] Frontend: CRUD de Categorías (UI)
+- [x] Frontend: CRUD de Categorías (UI)
 - [ ] Frontend: CRUD de Productos (UI), con filtros combinados
 - [ ] Frontend: Movimientos e historial por producto
 - [ ] Frontend: Dashboard con estadísticas
@@ -151,4 +151,4 @@ Ver `docs/adr/` para el detalle completo de cada decisión. Resumen:
 - [ ] Dockerfile de `apps/web` + servicio `web` en `compose.yml`
 - [ ] Revisión final: `docker compose up --build` desde cero en carpeta limpia
 
-*Última actualización: cierre de autenticación en el frontend
+Ultima actualización: cierre CRUD de Categorías

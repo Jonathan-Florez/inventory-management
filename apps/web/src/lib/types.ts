@@ -17,3 +17,18 @@ export type AuthToken = {
     token_type: string;
     user: User;
 };
+
+export type Category = {
+    id: number;
+    name: string;
+    description: string | null;
+    created_at: string;
+    product_count: number;
+};
+
+export type CategoryCreate = {
+    name: string;
+    description?: string;
+};
+
+export type CategoryUpdate = Partial<CategoryCreate>;
