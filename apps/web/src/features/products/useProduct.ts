@@ -39,3 +39,13 @@ export function useProducts({
         enabled: !!token,
     });
 }
+
+export function useProduct(id: number) {
+    const { token } = useAuth();
+
+    return useQuery({
+        queryKey: ["products", id],
+        queryFn: () => apiFetch<Product>(`/products/${id}`, { token }),
+        enabled: !!token && !!id,
+    });
+}

@@ -66,3 +66,28 @@ export type ProductCreate = {
 };
 
 export type ProductUpdate = Partial<Omit<ProductCreate, "quantity">>;
+
+export type MovementType = "in" | "out";
+
+export type Movement = {
+    id: number;
+    product_id: number;
+    type: MovementType;
+    quantity: number;
+    note: string | null;
+    created_at: string;
+};
+
+export type MovementCreate = {
+    type: MovementType;
+    quantity: number;
+    note?: string;
+};
+
+export type DashboardSummary = {
+    total_products: number;
+    total_categories: number;
+    low_stock_count: number;
+    total_inventory_value: string;
+    recent_movements: Movement[];
+};
