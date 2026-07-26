@@ -7,7 +7,6 @@ from sqlmodel import Session, create_engine
 
 from app.core.config import settings
 
-
 ##* aca utilizamos pool_pre_ping=True para que si la conexion se cae, se vuelva a conectar automaticamente
 engine = create_engine(settings.database_url, echo=False, pool_pre_ping=True)
 

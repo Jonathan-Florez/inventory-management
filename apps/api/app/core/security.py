@@ -1,11 +1,10 @@
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from typing import Any
 
 from jose import JWTError, jwt
 from passlib.context import CryptContext
 
 from app.core.config import settings
-
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
@@ -21,7 +20,7 @@ def verify_password(plain_password: str, hashed_password: str) -> bool:
 
 ##* aca creamos la funcion que crea el token, recibe el id de el usuario que es el subject decimos que debe ser string, recibe expires_delta que es opcional, y si no se pasase usa none por default aunque mas abajo le decimos que si es none use el tiempo de expiracion que definimos en settings.py, y devuelve un string que es el token
 def create_access_token(subject: str, expires_delta: timedelta | None = None) -> str:
-    expire = datetime.now(timezone.utc) + (
+    expire = datetime.now(UTC) + (
         expires_delta or timedelta(seconds=settings.jwt_expires_in)
     )
     to_encode: dict[str, Any] = {"sub": subject, "exp": expire}

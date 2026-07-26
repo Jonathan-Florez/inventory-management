@@ -1,8 +1,9 @@
 from datetime import datetime
 from decimal import Decimal
-from app.models.product import ProductStatus
 
 from pydantic import BaseModel, Field, HttpUrl
+
+from app.models.product import ProductStatus
 
 
 class ProductCreate(BaseModel):

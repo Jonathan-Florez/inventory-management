@@ -3,7 +3,6 @@ from pathlib import Path
 
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
-
 ##* este codigo nos ayuda con la finalidad de que no se rompa por culpa de las rutas en local o en el servidor, de esta forma busca el archivo .env donde este hacia arriba 
 
 _THIS_FILE = Path(__file__).resolve()

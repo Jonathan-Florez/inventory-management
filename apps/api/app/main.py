@@ -5,7 +5,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.core.logging import setup_logging
-from app.routers import auth, categories, health, movements, products, dashboard
+from app.routers import auth, categories, dashboard, health, movements, products
 
 setup_logging()
 logger = logging.getLogger(__name__)
