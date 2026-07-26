@@ -7,6 +7,11 @@ on:
 jobs:
   backend:
     runs-on: ubuntu-latest
+    env:
+      DATABASE_URL: postgresql+psycopg://postgres:postgres@localhost:5432/inventory_test
+      JWT_SECRET: test_secret_ci
+      JWT_EXPIRES_IN: 3600
+      API_PORT: 8000
     services:
       postgres:
         image: postgres:16-alpine
