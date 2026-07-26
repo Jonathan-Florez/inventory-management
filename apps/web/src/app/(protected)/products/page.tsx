@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useProducts } from "@/features/products/useProducts";
+import { useProducts } from "@/features/products/useProduct";
 import {
     useCreateProduct,
     useUpdateProduct,
