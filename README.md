@@ -88,10 +88,19 @@ uvicorn app.main:app --reload --port 8000
 ```
 
 ### Frontend
+### Todo el sistema con Docker Compose (recomendado)
 
-El frontend **todavía no está dockerizado** (pendiente, ver roadmap) — corre
-en local, contra el backend levantado por cualquiera de los dos métodos de
-arriba:
+```bash
+docker compose -f infra/docker/compose.yml up --build
+```
+
+Servicios:
+- Web: http://localhost:3000
+- API: http://localhost:8000/docs
+- Adminer: http://localhost:8080
+- Postgres: `localhost:5432`
+
+### Frontend, local sin Docker (desarrollo con hot-reload)
 
 ```bash
 cd apps/web
@@ -147,8 +156,8 @@ Ver `docs/adr/` para el detalle completo de cada decisión. Resumen:
 - [X] Frontend: Movimientos e historial por producto
 - [x] Frontend: Dashboard con estadísticas
 - [x] Frontend: tests (mínimo 1–2, componente + formulario)
-- [ ] CI (GitHub Actions): lint + test en cada PR
-- [ ] Dockerfile de `apps/web` + servicio `web` en `compose.yml`
+- [X] CI (GitHub Actions): lint + test en cada PR
+- [ X] Dockerfile de `apps/web` + servicio `web` en `compose.yml`
 - [ ] Revisión final: `docker compose up --build` desde cero en carpeta limpia
 
-Última actualización: cierre de Movimientos + Dashboard
+ultima actualización: Docker de frontend, tests, CI y estilos base completo
