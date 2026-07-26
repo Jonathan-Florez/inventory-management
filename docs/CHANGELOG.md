@@ -20,6 +20,7 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
   
 - Autenticación completa en el frontend: contexto de sesión (AuthContext) con persistencia en localStorage, páginas de login/registro con estados de carga y error visibles, y protección de rutas vía guard client-side
 - CRUD completo de Categorías en el frontend: listado con búsqueda y paginación, formulario de crear/editar, borrado con advertencia de eliminación en cascada (productos y movimientos asociados).
+- CRUD completo de Productos en el frontend: filtros combinados (categoría, estado, stock bajo), búsqueda por nombre/SKU, badge visual de stock bajo, SKU y cantidad bloqueados en edición (reglas de negocio del backend reflejadas en UI).
 
 
 

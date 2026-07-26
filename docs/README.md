@@ -143,7 +143,7 @@ Ver `docs/adr/` para el detalle completo de cada decisión. Resumen:
 - [x] Frontend: autenticación (registro, login, sesión persistente, rutas
       protegidas)
 - [x] Frontend: CRUD de Categorías (UI)
-- [ ] Frontend: CRUD de Productos (UI), con filtros combinados
+- [X] Frontend: CRUD de Productos (UI), con filtros combinados
 - [ ] Frontend: Movimientos e historial por producto
 - [ ] Frontend: Dashboard con estadísticas
 - [ ] Frontend: tests (mínimo 1–2, componente + formulario)
@@ -151,4 +151,4 @@ Ver `docs/adr/` para el detalle completo de cada decisión. Resumen:
 - [ ] Dockerfile de `apps/web` + servicio `web` en `compose.yml`
 - [ ] Revisión final: `docker compose up --build` desde cero en carpeta limpia
 
-Ultima actualización: cierre CRUD de Categorías
+Última actualización: cierre deCRUD de Productos
