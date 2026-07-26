@@ -23,7 +23,7 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 - CRUD completo de Productos en el frontend: filtros combinados (categoría, estado, stock bajo), búsqueda por nombre/SKU, badge visual de stock bajo, SKU y cantidad bloqueados en edición (reglas de negocio del backend reflejadas en UI).x
 - Vista de detalle de producto con historial de movimientos y formulario de registro de entradas/salidas; el stock se refleja actualizado en listado, detalle y dashboard sin recargar la página.
 - Dashboard con estadísticas agregadas (productos, categorías, alertas de stock bajo, valor total del inventario) y tabla de últimos 5 movimientos.
-
+- Tests frontend con Vitest + Testing Library: ProductTable (render de is_low_stock) y MovementForm (validación e interacción de UI).
 
 
 ### Fixed

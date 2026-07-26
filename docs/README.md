@@ -146,7 +146,7 @@ Ver `docs/adr/` para el detalle completo de cada decisión. Resumen:
 - [X] Frontend: CRUD de Productos (UI), con filtros combinados
 - [X] Frontend: Movimientos e historial por producto
 - [x] Frontend: Dashboard con estadísticas
-- [ ] Frontend: tests (mínimo 1–2, componente + formulario)
+- [x] Frontend: tests (mínimo 1–2, componente + formulario)
 - [ ] CI (GitHub Actions): lint + test en cada PR
 - [ ] Dockerfile de `apps/web` + servicio `web` en `compose.yml`
 - [ ] Revisión final: `docker compose up --build` desde cero en carpeta limpia
