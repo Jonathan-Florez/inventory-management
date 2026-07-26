@@ -38,6 +38,15 @@ services:
     depends_on:
       db:
         condition: service_healthy
-
+  web:
+    build:
+      context: ../../apps/web
+      dockerfile: Dockerfile
+    environment:
+      NEXT_PUBLIC_API_BASE_URL: http://localhost:8000
+    ports:
+      - "${WEB_PORT:-3000}:3000"
+    depends_on:
+      - api
 volumes:
   pgdata:
