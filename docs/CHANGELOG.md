@@ -24,6 +24,9 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 - Vista de detalle de producto con historial de movimientos y formulario de registro de entradas/salidas; el stock se refleja actualizado en listado, detalle y dashboard sin recargar la página.
 - Dashboard con estadísticas agregadas (productos, categorías, alertas de stock bajo, valor total del inventario) y tabla de últimos 5 movimientos.
 - Tests frontend con Vitest + Testing Library: ProductTable (render de is_low_stock) y MovementForm (validación e interacción de UI).
+- Dockerfile de apps/web (multi-stage) y servicio web agregado a infra/docker/compose.yml — el sistema completo levanta con `docker compose up --build`.
+- CI con GitHub Actions: lint + tests de backend (con Postgres real como servicio) y frontend en cada PR contra main.
+- Navegación persistente (dashboard/categorías/productos) y estilos base consistentes en toda la app.
 
 
 ### Fixed

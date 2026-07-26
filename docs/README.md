@@ -89,20 +89,24 @@ uvicorn app.main:app --reload --port 8000
 
 ### Frontend
 
-El frontend **todavía no está dockerizado** (pendiente, ver roadmap) — corre
-en local, contra el backend levantado por cualquiera de los dos métodos de
-arriba:
+### Todo el sistema con Docker Compose (recomendado)
+
+```bash
+docker compose -f infra/docker/compose.yml up --build
+```
+
+Servicios:
+- Web: http://localhost:3000
+- API: http://localhost:8000/docs
+- Adminer: http://localhost:8080
+
+### Frontend, local sin Docker (desarrollo con hot-reload)
 
 ```bash
 cd apps/web
 npm install
 npm run dev
-```
 
-Abrí http://localhost:3000. Necesita `NEXT_PUBLIC_API_BASE_URL` disponible
-(ya viene en `.env.example`; Next.js la toma automáticamente si copiaste el
-`.env` a la raíz del repo, o creá `apps/web/.env.local` con la misma variable
-si corrés el frontend desde una carpeta distinta).
 
 ### Datos de ejemplo (seed)
 
@@ -147,8 +151,8 @@ Ver `docs/adr/` para el detalle completo de cada decisión. Resumen:
 - [X] Frontend: Movimientos e historial por producto
 - [x] Frontend: Dashboard con estadísticas
 - [x] Frontend: tests (mínimo 1–2, componente + formulario)
-- [ ] CI (GitHub Actions): lint + test en cada PR
-- [ ] Dockerfile de `apps/web` + servicio `web` en `compose.yml`
+- [X] CI (GitHub Actions): lint + test en cada PR
+- [X] Dockerfile de `apps/web` + servicio `web` en `compose.yml`
 - [ ] Revisión final: `docker compose up --build` desde cero en carpeta limpia
 
-Última actualización: cierre de Movimientos + Dashboard
+Ultima actualización: Docker de frontend, tests, CI y estilos base completos
