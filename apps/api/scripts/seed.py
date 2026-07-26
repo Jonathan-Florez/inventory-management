@@ -4,7 +4,7 @@ import random
 from datetime import UTC, datetime, timedelta
 from decimal import Decimal
 
-from sqlmodel import Session, select, delete
+from sqlmodel import Session, delete, select
 
 from app.core.db import engine
 from app.core.security import hash_password

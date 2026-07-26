@@ -12,6 +12,7 @@ from sqlalchemy import engine_from_config, pool
 from sqlmodel import SQLModel
 
 from app.core.config import settings
+
 ##* importar los modelos es obligatorio para que Alembic pueda detectar los cambios en la base de datos y generar las migraciones automáticamente. con --autogenerate
 ##* pero estos modelos no se utilizan en este archivo, por lo que se importa con noqa: F401 para evitar el error de "imported but unused"
 from app.models import category, movement, product, user  # noqa: F401  

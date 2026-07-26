@@ -1,8 +1,8 @@
 import enum
 from datetime import UTC, datetime
 from decimal import Decimal
-from sqlalchemy import Column, ForeignKey, Integer
 
+from sqlalchemy import Column, ForeignKey, Integer
 from sqlmodel import Field, SQLModel
 
 

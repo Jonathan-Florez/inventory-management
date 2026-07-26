@@ -1,8 +1,7 @@
 import enum
 from datetime import UTC, datetime
 
-from sqlmodel import Field, SQLModel
-from sqlalchemy import Column, Integer, ForeignKey
+from sqlalchemy import Column, ForeignKey, Integer
 from sqlalchemy import Enum as SAEnum
 from sqlmodel import Field, SQLModel
 

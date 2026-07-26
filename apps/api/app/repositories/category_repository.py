@@ -1,6 +1,8 @@
 from sqlmodel import Session, func, select
+
 from app.models.category import Category
 from app.models.product import Product
+
 
 class CategoryRepository:
     def __init__(self, session: Session):

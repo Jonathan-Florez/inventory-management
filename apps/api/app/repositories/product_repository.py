@@ -1,8 +1,8 @@
-from dataclasses import fields
 
-from sqlmodel import Session, func, select
 from datetime import UTC, datetime
 from decimal import Decimal
+
+from sqlmodel import Session, func, select
 
 from app.models.product import Product
 
