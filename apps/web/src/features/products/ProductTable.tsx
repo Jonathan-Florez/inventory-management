@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import type { Product } from "@/lib/types";
 
 const STATUS_LABELS: Record<Product["status"], string> = {
@@ -52,6 +53,9 @@ export function ProductTable({ products, onEdit, onDelete }: ProductTableProps) 
                 <td className="py-2">${Number(product.price).toFixed(2)}</td>
                 <td className="py-2">{STATUS_LABELS[product.status]}</td>
                 <td className="space-x-2 py-2 text-right">
+                    <Link href={`/products/${product.id}`} className="underline">
+                        Ver detalle
+                    </Link>
                 <button onClick={() => onEdit(product)} className="underline" aria-label={`Editar ${product.name}`}>
                     Editar
                 </button>
