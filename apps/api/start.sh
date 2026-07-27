@@ -5,7 +5,7 @@ echo "Aplicando migraciones..."
 alembic upgrade head
 
 echo "Corriendo seed (idempotente)..."
-python -m scripts.seed.py
+python -m scripts.seed
 
 echo "Arrancando servidor..."
 exec uvicorn app.main:app --host 0.0.0.0 --port "$PORT"
