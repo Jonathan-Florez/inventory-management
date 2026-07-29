@@ -1,4 +1,5 @@
 from fastapi import APIRouter, Depends, Query
+from fastapi.responses import StreamingResponse
 from sqlmodel import Session
 
 from app.core.db import get_session
@@ -7,6 +8,7 @@ from app.models.product import ProductStatus
 from app.models.user import User
 from app.schemas.common import PaginatedResponse
 from app.schemas.product import ProductCreate, ProductRead, ProductUpdate
+from app.services.export_service import ExportService
 from app.services.product_service import ProductService
 
 router = APIRouter(prefix="/products", tags=["products"])
@@ -37,6 +39,19 @@ def list_alerts(
     current_user: User = Depends(get_current_user),
 ) -> PaginatedResponse[ProductRead]:
     return ProductService(session).list_low_stock(current_user.id, page, page_size)
+
+
+@router.get("/export/xlsx")
+def export_products_xlsx(
+    session: Session = Depends(get_session),
+    current_user: User = Depends(get_current_user),
+) -> StreamingResponse:
+    buffer = ExportService(session).build_products_workbook(current_user.id)
+    return StreamingResponse(
+        buffer,
+        media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        headers={"Content-Disposition": "attachment; filename=inventario.xlsx"},
+    )
 
 
 @router.post("", response_model=ProductRead, status_code=201)

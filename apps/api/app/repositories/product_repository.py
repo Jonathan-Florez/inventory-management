@@ -63,6 +63,11 @@ class ProductRepository:
             low_stock=True, q=None, page=page, page_size=page_size,
         )
 
+    def list_all(self, user_id: int) -> list[Product]:
+        ##* usado por el export a Excel: trae todos los productos del usuario, sin paginar
+        statement = select(Product).where(Product.user_id == user_id).order_by(Product.name)
+        return self.session.exec(statement).all()
+
     def create(self, *, user_id: int, **fields) -> Product:
         product = Product(user_id=user_id, **fields)
         self.session.add(product)
