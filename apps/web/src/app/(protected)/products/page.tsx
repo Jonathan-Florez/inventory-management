@@ -10,6 +10,8 @@ import {
 import { ProductForm, type ProductFormValues } from "@/features/products/ProductForm";
 import { ProductTable } from "@/features/products/ProductTable";
 import { ProductFilters } from "@/features/products/ProductFilters";
+import { downloadProductsExcel } from "@/features/products/exportProducts";
+import { useAuth } from "@/features/auth/AuthContext";
 import type { Product, ProductStatus } from "@/lib/types";
 
 export default function ProductsPage() {
@@ -22,11 +24,24 @@ export default function ProductsPage() {
     const [page, setPage] = useState(1);
     const [showForm, setShowForm] = useState(false);
     const [editingProduct, setEditingProduct] = useState<Product | null>(null);
+    const [isExporting, setIsExporting] = useState(false);
 
+    const { token } = useAuth();
     const { data, isLoading, isError } = useProducts({ ...filters, page });
     const createProduct = useCreateProduct();
     const updateProduct = useUpdateProduct(editingProduct?.id ?? 0);
     const deleteProduct = useDeleteProduct();
+
+    async function handleExport() {
+        setIsExporting(true);
+        try {
+            await downloadProductsExcel(token);
+        } catch {
+            window.alert("No se pudo exportar el inventario. Intenta de nuevo.");
+        } finally {
+            setIsExporting(false);
+        }
+    }
 
     function handleFiltersChange(next: typeof filters) {
         setFilters(next);
@@ -81,15 +96,27 @@ export default function ProductsPage() {
                             Control completo sobre las existencias, precios y estados de tu stock.
                         </p>
                     </div>
-                    <button 
-                        onClick={handleNew} 
-                        className="btn-primary text-sm font-medium shadow-sm self-start sm:self-auto flex items-center gap-2"
-                    >
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-4 w-4">
-                            <path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
-                        </svg>
-                        Nuevo producto
-                    </button>
+                    <div className="flex items-center gap-2 self-start sm:self-auto">
+                        <button
+                            onClick={handleExport}
+                            disabled={isExporting}
+                            className="btn-secondary text-sm font-medium shadow-sm bg-white flex items-center gap-2 disabled:opacity-50"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-4 w-4">
+                                <path fillRule="evenodd" d="M10 2a.75.75 0 01.75.75v8.19l2.72-2.72a.75.75 0 111.06 1.06l-4 4a.75.75 0 01-1.06 0l-4-4a.75.75 0 111.06-1.06l2.72 2.72V2.75A.75.75 0 0110 2zM3.5 12.75a.75.75 0 00-1.5 0v2.5A2.75 2.75 0 004.75 18h10.5A2.75 2.75 0 0018 15.25v-2.5a.75.75 0 00-1.5 0v2.5c0 .69-.56 1.25-1.25 1.25H4.75c-.69 0-1.25-.56-1.25-1.25v-2.5z" clipRule="evenodd" />
+                            </svg>
+                            {isExporting ? "Generando..." : "Exportar a Excel"}
+                        </button>
+                        <button 
+                            onClick={handleNew} 
+                            className="btn-primary text-sm font-medium shadow-sm flex items-center gap-2"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-4 w-4">
+                                <path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
+                            </svg>
+                            Nuevo producto
+                        </button>
+                    </div>
                 </div>
 
                 <div className="card border-gray-100 shadow-sm bg-gray-50/50 p-4 rounded-xl">
