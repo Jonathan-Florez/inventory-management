@@ -158,6 +158,6 @@ Ver `docs/adr/` para el detalle completo de cada decisión. Resumen:
 - [x] Frontend: tests (mínimo 1–2, componente + formulario)
 - [X] CI (GitHub Actions): lint + test en cada PR
 - [ X] Dockerfile de `apps/web` + servicio `web` en `compose.yml`
-- [ ] Revisión final: `docker compose up --build` desde cero en carpeta limpia
+- [ X] Revisión final: `docker compose up --build` desde cero en carpeta limpia
 
 ultima actualización: Docker de frontend, tests, CI y estilos base completo

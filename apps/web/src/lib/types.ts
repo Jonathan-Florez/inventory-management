@@ -84,10 +84,17 @@ export type MovementCreate = {
     note?: string;
 };
 
+export type MovementTimelinePoint = {
+    date: string;
+    in_quantity: number;
+    out_quantity: number;
+};
+
 export type DashboardSummary = {
     total_products: number;
     total_categories: number;
     low_stock_count: number;
     total_inventory_value: string;
     recent_movements: Movement[];
+    movements_timeline: MovementTimelinePoint[];
 };

@@ -1,3 +1,5 @@
+from datetime import UTC, datetime, timedelta
+
 from sqlmodel import Session, func, select
 
 from app.models.movement import Movement
@@ -48,5 +50,22 @@ class MovementRepository:
             .where(Movement.user_id == user_id)
             .order_by(Movement.created_at.desc())
             .limit(limit)
+        )
+        return self.session.exec(statement).all()
+
+    def get_daily_totals(self, user_id: int, days: int) -> list:
+        ##* traemos movimientos desde el inicio del dia hace `days - 1` dias
+        ##* (para incluir el dia de hoy como el ultimo dia del rango)
+        since = datetime.now(UTC) - timedelta(days=days - 1)
+        since_start = since.replace(hour=0, minute=0, second=0, microsecond=0)
+
+        statement = (
+            select(
+                func.date(Movement.created_at).label("day"),
+                Movement.type,
+                func.sum(Movement.quantity).label("total"),
+            )
+            .where(Movement.user_id == user_id, Movement.created_at >= since_start)
+            .group_by(func.date(Movement.created_at), Movement.type)
         )
         return self.session.exec(statement).all()
