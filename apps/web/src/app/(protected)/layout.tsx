@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
 import { useAuth } from "@/features/auth/AuthContext";
+import { CommandPalette } from "@/features/command-palette/CommandPalette";
 
 export default function ProtectedLayout({
     children,
@@ -15,7 +16,7 @@ export default function ProtectedLayout({
     const pathname = usePathname();
 
     useEffect(() => {
-        if (!isLoading && !user) {
+        if (!isLoading && !user) { // Si terminamos el loading y no hay usuario lo redirige a login
             router.push("/login");
         }
     }, [isLoading, user, router]);
@@ -88,6 +89,8 @@ export default function ProtectedLayout({
                     </div>
 
                     <div className="flex items-center gap-4 text-sm">
+                        <CommandPalette />
+
                         <div className="flex items-center gap-2 bg-white/80 border border-gray-200/60 py-1.5 pl-2.5 pr-3.5 rounded-full shadow-sm">
                             <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gradient-to-tr from-indigo-500 to-sky-500 text-[11px] font-bold text-white uppercase tracking-wider shadow-inner">
                                 {user.name.slice(0, 2)}

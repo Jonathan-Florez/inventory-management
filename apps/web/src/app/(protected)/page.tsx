@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useDashboard } from "@/features/dashboard/useDashboard";
+import { MovementsChart } from "@/features/dashboard/MovementsChart";
 
 const TYPE_LABELS = { in: "Entrada", out: "Salida" } as const;
 
@@ -93,6 +94,8 @@ export default function DashboardPage() {
                         </p>
                     </div>
                 </div>
+
+                <MovementsChart data={data.movements_timeline} />
 
                 <div className="space-y-4 pt-2">
                     <div className="flex items-center justify-between">
