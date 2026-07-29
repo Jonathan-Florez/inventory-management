@@ -27,12 +27,18 @@ describe("MovementForm", () => {
     });
 
     it("permite alternar entre entrada y salida", async () => {
-        const user = userEvent.setup();
-        renderWithQueryClient(<MovementForm productId={1} />);
+    const user = userEvent.setup();
+    renderWithQueryClient(<MovementForm productId={1} />);
 
-        const salidaRadio = screen.getByLabelText(/salida/i);
-        await user.click(salidaRadio);
+    const salidaButton = screen.getByRole("button", { name: /salida/i });
+    const entradaButton = screen.getByRole("button", { name: /entrada/i });
 
-        expect(salidaRadio).toBeChecked();
-    });
+    // Por defecto el formulario arranca en "entrada"
+    expect(entradaButton.className).toMatch(/bg-white/);
+
+    await user.click(salidaButton);
+
+    // Al hacer click en "salida", el estilo activo se mueve a ese botón
+    expect(salidaButton.className).toMatch(/bg-white/);
+});
 });
