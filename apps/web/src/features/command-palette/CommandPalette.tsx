@@ -23,7 +23,8 @@ export function CommandPalette() {
     useEffect(() => {
         function handleKeyDown(e: KeyboardEvent) {
             if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
-                e.preventDefault();
+                e.preventDefault(); // No quitar esta linea, en los navegadores por defecto ctl K tiene una funcion ya asignada
+                // ese preventDefault para esa funcion y la pasa a ser manejada por la mi app
                 setOpen((prev) => !prev);
             }
             if (e.key === "Escape") {
@@ -36,14 +37,14 @@ export function CommandPalette() {
 
     useEffect(() => {
         if (open) {
-            setQuery("");
-            setActiveIndex(0);
+            setQuery(""); // Borramos cualquier texto que el usuario haya escrito en una búsqueda anterior, dejando el buscador limpio.
+            setActiveIndex(0); //  Reiniciamos el selector del teclado para que la selección empiece siempre arriba de todo, en el primer elemento de la lista.
             setTimeout(() => inputRef.current?.focus(), 0);
         }
     }, [open]);
 
     useEffect(() => {
-        const timeout = setTimeout(() => setDebouncedQuery(query), 250);
+        const timeout = setTimeout(() => setDebouncedQuery(query), 250); // esto lo añadimos para que no se llame a la api en cada letra, en su defento lo haga cada 2 sec para que sea como cuando el usuario deja de escribir y no saturar
         return () => clearTimeout(timeout);
     }, [query]);
 

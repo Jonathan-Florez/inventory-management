@@ -39,17 +39,22 @@ class DashboardService:
         ##* totals queda como { fecha: {"in": cantidad, "out": cantidad} }
         totals: dict = {}
         for day, movement_type, total in raw_totals:
-            ##* algunos drivers devuelven `day` como date y otros como datetime; normalizamos
+            ##* algunos drivers devuelven `day` como date y otros como datetime; normalizamos 
             day_key = day.date() if hasattr(day, "date") else day
             type_key = movement_type.value if hasattr(movement_type, "value") else movement_type
+            ##* setdefault es un metodo nativo de los dic de python, busca si la key day_key existe en el dict, si no existe
+            ##* la crea con el valor por defecto en este caso in out 0 y 0 sino no hace nadda y devuelve lo que hay
+
             totals.setdefault(day_key, {"in": 0, "out": 0})[type_key] = int(total)
 
         today = datetime.now(UTC).date()
         points: list[MovementTimelinePoint] = []
+        ##* range (start, stop, step) es una funcion de py, aqui le decimos que empiece en days -1, y que vaya hasta el -1 
+        ##* sin incluirlo, osea para en 0, y que reste de uno en uno
         for offset in range(days - 1, -1, -1):
             day = today - timedelta(days=offset)
-            entry = totals.get(day, {"in": 0, "out": 0})
-            points.append(
+            entry = totals.get(day, {"in": 0, "out": 0}) ##* aca sucede lo mismo, utilziamos get para traer el dia, si no hubo movimiento devuelve valor por defecto 0 y 0
+            points.append( ##! instanciamos un nuevo objeto pasando la fecha calculada, la cantidad de in y de out que obtuvimos en el paso anterior y luego lo agrega (.append) a la lista de resultados y la deuvelve
                 MovementTimelinePoint(
                     date=day,
                     in_quantity=entry["in"],
@@ -57,3 +62,5 @@ class DashboardService:
                 )
             )
         return points
+
+    

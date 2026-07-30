@@ -45,7 +45,8 @@ def list_alerts(
 def export_products_xlsx(
     session: Session = Depends(get_session),
     current_user: User = Depends(get_current_user),
-) -> StreamingResponse:
+) -> StreamingResponse: ##? -> StreamingResponse: Es una anotación de tipo. Avisa que esta función no va a devolver un texto 
+    ##? común o un JSON (como suele hacer una API), sino una respuesta en streaming (un flujo constante de datos).
     buffer = ExportService(session).build_products_workbook(current_user.id)
     return StreamingResponse(
         buffer,
