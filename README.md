@@ -160,4 +160,9 @@ Ver `docs/adr/` para el detalle completo de cada decisión. Resumen:
 - [ X] Dockerfile de `apps/web` + servicio `web` en `compose.yml`
 - [ X] Revisión final: `docker compose up --build` desde cero en carpeta limpia
 
+## Puntos extra implementados
+- [x] Gráfico de movimientos (últimos 7 días) en el dashboard
+- [x] Shortcut ctrl K
+- [x] Exportación de inventario a Excel
+
 ultima actualización: Docker de frontend, tests, CI y estilos base completo

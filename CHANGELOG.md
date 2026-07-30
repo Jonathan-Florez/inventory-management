@@ -27,6 +27,10 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 - Dockerfile de apps/web (multi-stage) y servicio web agregado a infra/docker/compose.yml — el sistema completo levanta con `docker compose up --build`.
 - CI con GitHub Actions: lint + tests de backend (con Postgres real como servicio) y frontend en cada PR contra main.
 - Navegación persistente (dashboard/categorías/productos) y estilos base consistentes en toda la app.
+- Gráfico de movimientos (últimos 7 días) en el dashboard, con agregación diaria hecha en SQL
+- Command palette (⌘K / Ctrl+K) para búsqueda rápida de productos y navegación
+- Exportación del inventario a Excel (.xlsx) con formato (moneda, resaltado de stock bajo)
+- Sistema de notificaciones (toasts) para feedback de crear/editar/eliminar
 
 
 ### Fixed
@@ -41,3 +45,5 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 - .dockerignore agregado para excluir .venv, __pycache__ y archivos .env
   del contexto de build (reduce tamaño de imagen y evita filtrar secretos)
 - CORS del backend restringido a http://localhost:3000 (antes allow_origins=["*"]).
+- Test de `MovementForm` actualizado: esperaba un `<input type="radio">` con label, pero el componente usa botones toggle
+- Test de `MovementForm`: `renderWithQueryClient` no envolvía `ToastProvider`, rompiendo los 3 tests del archivo tras conectar `useToast()` en `useCreateMovement`
