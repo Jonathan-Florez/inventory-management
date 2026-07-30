@@ -3,13 +3,16 @@ import userEvent from "@testing-library/user-event";
 import { describe, expect, it } from "vitest";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { AuthProvider } from "@/features/auth/AuthContext";
+import { ToastProvider } from "@/features/toasts/ToastContext";
 import { MovementForm } from "./MovementForm";
 
 function renderWithQueryClient(ui: React.ReactElement) {
     const queryClient = new QueryClient();
     return render(
         <QueryClientProvider client={queryClient}>
-            <AuthProvider>{ui}</AuthProvider>
+            <AuthProvider>
+                <ToastProvider>{ui}</ToastProvider>
+            </AuthProvider>
         </QueryClientProvider>
     );
 }
