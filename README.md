@@ -56,6 +56,20 @@ Además de los requisitos base de la prueba, el proyecto incluye:
 El detalle técnico y el porqué de cada decisión está documentado en
 `docs/adr/` (ver sección de Decisiones técnicas más abajo).
 
+## Demo desplegada
+
+La aplicación está desplegada y accesible públicamente en:
+
+**https://inventory-management-8rbc.onrender.com/**
+
+Usuarios de prueba (password: `password123`):
+- `ana@example.com`
+- `luis@example.com`
+
+Las instrucciones de instalación local de más abajo son para quien quiera
+correr el proyecto en su propia máquina (por ejemplo, para revisar el
+código, correr las pruebas o levantarlo con Docker).
+
 ## Requisitos previos
 
 - Docker y Docker Compose
@@ -96,7 +110,7 @@ cp .env.example .env
 Ninguna de las funcionalidades agregadas (gráfico, command palette, export a
 Excel, toasts) requiere una variable de entorno nueva.
 
-## Guía de instalación y ejecución
+## Guía de instalación y ejecución (desarrollo local)
 
 ### Todo el sistema con Docker Compose (recomendado)
 
@@ -160,7 +174,7 @@ cd apps/api
 pytest -v
 ```
 
-Requiere una base de datos Postgres accesible (local o vía Docker) 
+Requiere una base de datos Postgres accesible (local o vía Docker)
 
 ### Frontend
 
