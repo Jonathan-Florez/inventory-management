@@ -24,7 +24,6 @@ completamente separado de Next.js (no hay API routes de Next.js de por medio).
   declarativa contra esa API externa, sin reimplementar esa lógica a mano.
 
 ## Consecuencias
-- middleware.ts centraliza la protección de rutas en un solo archivo.
 - Los listados paginados/filtrados (categorías, productos, movimientos)
   usan queryKey dinámico basado en los parámetros de filtro — patrón
   directo de React Query para este caso de uso.

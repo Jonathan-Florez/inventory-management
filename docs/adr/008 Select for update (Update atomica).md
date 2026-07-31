@@ -1,9 +1,8 @@
-# ADR-008: SELECT FOR UPDATE para actualización atómica de stock
+# ADR-008: SELECT FOR UPDATE para actualización atómica (se hace todo o nada) de stock
 
 ## Contexto
 El PDF exige que registrar un movimiento actualice el stock del producto
-"de forma atómica" (sección "¿Por qué esta prueba es diferente?", punto 5).
-Sin un mecanismo de bloqueo, dos movimientos concurrentes sobre el mismo
+"de forma atómica" Sin un mecanismo de bloqueo, dos movimientos concurrentes sobre el mismo
 producto podrían leer el mismo valor de quantity, validar stock de forma
 independiente, y ambos escribir — generando un resultado incorrecto
 
